@@ -6,6 +6,7 @@
   "dependencies": {
     "bluebird": "^3.2.1",
     "cli-color": "^1.1.0",
+    "commander": "^2.9.0",
     "keypress": "^0.2.1"
   },
   "devDependencies": {},
