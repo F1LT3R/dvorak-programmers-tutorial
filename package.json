@@ -1,0 +1,32 @@
+{
+  "name": "dvorak-programmers-tutorial",
+  "version": "1.0.0",
+  "description": "Interactive command line Programmer Dvorak typing tutorial.",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.2.1",
+    "cli-color": "^1.1.0",
+    "keypress": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/F1LT3R/dvorak-programmers-tutorial.git"
+  },
+  "keywords": [
+    "dvorak",
+    "typing",
+    "tutorial",
+    "programmers",
+    "dvorak"
+  ],
+  "author": "Alistair MacDonald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/F1LT3R/dvorak-programmers-tutorial/issues"
+  },
+  "homepage": "https://github.com/F1LT3R/dvorak-programmers-tutorial#readme"
+}
