@@ -1,0 +1,10 @@
+Lesson 12: Introducing . and C: Second fingers reaching up
+cccc .... cccc .... cccc .... cccc .... 
+cccc .... cccc .... cccc .... cccc .... 
+eeee cccc tttt .... 
+ec ec ec ec tc tc tc tc 
+ec ec ec ec tc tc tc tc 
+c. c. c. c. t. t. t. t. e. e. e. e. 
+c. c. c. c. t. t. t. t. e. e. e. e. 
+etc. etc. etc. etc. etc. etc. etc. etc. 
+etc. etc. etc. etc. etc. etc. etc. etc. 

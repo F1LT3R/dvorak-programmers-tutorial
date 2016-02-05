@@ -1,0 +1,7 @@
+Lesson 33b: Comprehensive, including - and _
+a->w a->w a->w a->w 
+s <-> t s <-> t s <-> t s <-> t 
+var _k : w - v; var _k : w - v; var _k : w - v; var _k : w - v; 
+_.map _.map _.map _.map _.reduce _.reduce _.reduce _.reduce 
+<_> <_> <_> <_> >_< >_< >_< >_< 
+var a, b -> c; var a, b -> c; var a, b -> c; var a, b -> c; 
