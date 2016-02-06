@@ -21,6 +21,7 @@
   var pkg = require('./package.json');
 
   var lessonsPath = '/lessons';
+  var lessonID;
 
   program
     .version(pkg.version)
@@ -28,12 +29,18 @@
     .option('-l, --list', 'List of lessons')
     .option('-k, --keyboard', 'Show Programmers Dvorak keyboard layout')
     .action(function (lesson_id) {
-      lesson_id && runLesson(lesson_id);
+      lessonID = lesson_id;
     });
    
   program.parse(process.argv);
 
+  if (!lessonID) {
+    program.outputHelp();
+  }
+  
+  program.keyboard && drawKeyboard();
   program.list && listLessons();
+  lessonID && runLesson(lessonID);
 
   function listLessons () {
     var path = __dirname + lessonsPath;
@@ -49,8 +56,6 @@
       });
     });
   }
-
-  program.keyboard && drawKeyboard();  
 
   function drawKeyboard () {
 

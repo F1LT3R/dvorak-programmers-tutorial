@@ -2,7 +2,9 @@
   "name": "dvorak-programmers-tutorial",
   "version": "1.0.0",
   "description": "Interactive command line Programmer Dvorak typing tutorial.",
-  "main": "index.js",
+  "bin": {
+    "dvorak": "index.js"
+  },  
   "dependencies": {
     "bluebird": "^3.2.1",
     "cli-color": "^1.1.0",
