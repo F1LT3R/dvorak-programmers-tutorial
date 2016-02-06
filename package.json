@@ -1,6 +1,6 @@
 {
   "name": "dvorak-programmers-tutorial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive command line Programmer Dvorak typing tutorial.",
   "bin": {
     "dvorak": "index.js"
