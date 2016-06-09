@@ -46,14 +46,19 @@
     var path = __dirname + lessonsPath;
     var files = fs.readdirSync(path);
 
+    var promises = [];
     files.forEach(function (file, n) {
       var filename = path + '/' + file;
-
-      loadLesson(filename).then(function (lines) {
+      promises.push(loadLesson(filename));
+    });
+    Promise.all(promises).then(values => {
+      var titles = values.map(lines => {
         var title = lines[0];
         var id = title.split('Lesson ')[1].split(':')[0];
-        console.log(title.replace(id, clc.green(id)));
+        return title.replace(id, clc.green(id));
       });
+      titles.sort();
+      titles.forEach(title => { console.log(title);});
     });
   }
 
