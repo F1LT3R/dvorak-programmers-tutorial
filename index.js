@@ -125,13 +125,13 @@
       .replace(/ Q /,    f3(' Q '))
       .replace(/ Cmd /,  f3(' Cmd '))
       // Finger 3 Right Hand
-      .replace(/\] 6/,   f3('} 6'))
+      .replace(/\] 6/,   f3('] 6'))
       .replace(/ L /,    f3(' L '))
       .replace(/ N /,    f3(' N '))
       .replace(/ V /,    f3(' V '))
       .replace(/Cmd/,    f3('Cmd'))
       // Finger 4 Left Hand
-      .replace(/\[ 7/,   f4('{ 5'))
+      .replace(/\[ 7/,   f4('[ 7'))
       .replace(/\, </,   f4(', <'))
       .replace(/ A /,    f4(' A '))
       .replace(/' "/,    f4('\' "'))
