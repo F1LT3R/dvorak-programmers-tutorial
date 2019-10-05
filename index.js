@@ -169,14 +169,26 @@
     });
   }
 
+  function loadTextFile (filename) {
+
+  }
+
   function runLesson (lesson_id) {  
     var lessonFile = __dirname + lessonsPath + '/lesson-' + lesson_id + '.txt';     
     loadLesson(lessonFile)
     .then(function (lesson) {
       beginLesson(lesson);
     }).catch(function (error) {
-      console.log(clc.red('Could not load lesson!'));
-      console.log(error);
+      
+      var lessonFile = lessonID;
+      loadLesson(lessonFile)
+      .then(function (lesson) {
+        beginLesson(lesson);
+      })
+      .catch(function (error) {
+        console.warn(clc.red('Could not load lesson!'));
+        console.error(error);
+      })
     });
   }
   
@@ -245,8 +257,11 @@
           process.stdin.pause();
         }
 
+        var returned = key && key.name === 'return' || false;
+
         // Ignore keys
-        if (key.name === 'return' || key.name === 'tab') {
+        // if (key.name === 'return' || key.name === 'tab') {
+        if ( key.name === 'tab') {
           return;
         }
        
@@ -266,17 +281,25 @@
       }
 
       if (ch === currentLine[cursorColumn]) {
-        process.stdout.write(pass(ch));
-        trace += '1';
+        if (!returned) {
+          process.stdout.write(pass(ch));
+          trace += '1';
+        }
       } else {
-        process.stdout.write(fail(ch));
-        lineErrors += 1;
-        totalErrors += 1;
-        trace += '0';
+        if (!returned) {
+          process.stdout.write('\u0007');
+          process.stdout.write(fail(ch));
+          lineErrors += 1;
+          totalErrors += 1;
+          trace += '0';
+        }
       }
-      cursorColumn += 1;
+      if (!returned) {
+        cursorColumn += 1;
+      }
 
-      if (cursorColumn === currentLine.length && !lineErrors) {
+      // console.log(cursorColumn, currentLine.length, returned);
+      if (cursorColumn >= currentLine.length && !lineErrors && returned) {
         nextLine();
       }
     });
