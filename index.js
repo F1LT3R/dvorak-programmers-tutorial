@@ -329,7 +329,7 @@ const menu = {
 
     const choices = [
       {
-        message: clc.green('Dvorak Typeing Lessons'),
+        message: clc.green('Dvorak Typing Lessons'),
         name: 'lessons'
       }
     ];

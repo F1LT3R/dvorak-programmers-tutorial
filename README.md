@@ -4,7 +4,7 @@ A command line typing tutor for the Dvorak and [Programmer's Dvorak
 Dvorak](http://www.kaufmann.no/roland/dvorak/)
 keyboard layout.
 
-![Dvorak Programmers Tutorial Main Menu](https://i.imgur.com/2OBkfq9.png)
+![Dvorak Programmers Tutorial Main Menu](https://i.imgur.com/5xfRVs3.png)
 
 ## Installation
 
@@ -30,7 +30,7 @@ dvorak
 
 ### Keyboard Layout
 
-View the split keyboard layout.
+You can view the split keyboard layout to help you when using blank keys.
 
 ![Dvorak Programmers Tutorial Keyboard Layout](https://i.imgur.com/HQSDtIX.png)
 
