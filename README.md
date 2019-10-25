@@ -1,8 +1,10 @@
 # Dvorak Programmers CLI Tutorial 2.0
 
-A command line typing tutor for the [Programmers
+A command line typing tutor for the Dvorak and [Programmer's Dvorak
 Dvorak](http://www.kaufmann.no/roland/dvorak/)
-Dvorak keyboard layout.
+keyboard layout.
+
+![Dvorak Programmers Tutorial Main Menu](https://i.imgur.com/2OBkfq9.png)
 
 ## Installation
 
@@ -21,8 +23,6 @@ yarn add --global dvorak-programmers-tutorial
 ## Usage
 
 Type `dvorak` to load the main-menu.
-
-![Dvorak Programmers Tutorial Main Menu](https://i.imgur.com/2OBkfq9.png)
 
 ### Keyboard Layout
 
