@@ -17,7 +17,7 @@ npm install -g dvorak-programmers-tutorial
 Yarn
 
 ```shell
-yarn add --global dvorak-programmers-tutorial
+yarn global add dvorak-programmers-tutorial
 ```
 
 ## Usage
