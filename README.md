@@ -24,6 +24,10 @@ yarn global add dvorak-programmers-tutorial
 
 Type `dvorak` to load the main-menu.
 
+```
+dvorak
+```
+
 ### Keyboard Layout
 
 View the split keyboard layout.
