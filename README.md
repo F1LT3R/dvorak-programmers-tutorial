@@ -1,7 +1,6 @@
 # Dvorak Programmers CLI Tutorial
 
-A command line typing tutor for the Dvorak and [Programmer's Dvorak
-Dvorak](http://www.kaufmann.no/roland/dvorak/)
+A command line typing tutor for the Dvorak and [Programmer's Dvorak](http://www.kaufmann.no/roland/dvorak/)
 keyboard layout.
 
 ![Dvorak Programmers Tutorial Main Menu](https://i.imgur.com/5xfRVs3.png)
