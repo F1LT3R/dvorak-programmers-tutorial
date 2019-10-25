@@ -1,6 +1,0 @@
-Lesson 26: Introducing ; and Z: Fourth fingers
-;;;; zzzz ;;;; zzzz ;;;; zzzz ;;;; zzzz 
-;;;; zzzz ;;;; zzzz ;;;; zzzz ;;;; zzzz 
-;z ;z ;z ;z :z :z :z :z 
-;z ;z ;z ;z :z :z :z :z 
-Z; Z; Z; Z; z: z: z: z: 

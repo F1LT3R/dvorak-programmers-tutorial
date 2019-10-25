@@ -1,15 +1,18 @@
 {
   "name": "dvorak-programmers-tutorial",
-  "version": "1.1.0",
-  "description": "Interactive command line Programmer Dvorak typing tutorial.",
+  "version": "2.0.0",
+  "description": "Dvorak Programmer CLI Tutorial",
   "bin": {
     "dvorak": "index.js"
   },
   "dependencies": {
-    "bluebird": "^3.2.1",
+    "cfonts": "^2.4.5",
     "cli-color": "^1.1.0",
     "commander": "^2.9.0",
-    "keypress": "^0.2.1"
+    "enquirer": "^2.3.2",
+    "inquirer": "^7.0.0",
+    "keypress": "^0.2.1",
+    "readline": "^1.3.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -24,7 +27,13 @@
     "typing",
     "tutorial",
     "programmers",
-    "dvorak"
+    "dvorak",
+    "kata",
+    "proverbs",
+    "solomon",
+    "tao",
+    "te",
+    "ching"
   ],
   "author": "Alistair MacDonald",
   "license": "MIT",

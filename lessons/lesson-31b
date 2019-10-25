@@ -1,0 +1,10 @@
+Lesson 31b - Comprehensive, including < and >
+a > b; a > b; a > b; a > b;
+x << z; x << z; x << z; x << z;
+>..< >..< >..< >..<
+<:::> <:::> <:::> <:::>
+'<>' '<>' '<>' '<>'
+s >>> bits; s >>> bits; s >>> bits; s >>> bits
+echo "hello" > out.txt; echo "hello" > out.txt;
+x <<< z; x <<< z; x <<< z; x <<< z;
+sort < file.txt > sorted.txt; sort < file.txt > sorted.txt;

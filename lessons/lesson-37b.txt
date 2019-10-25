@@ -1,7 +1,0 @@
-Lesson 37b: Comprehensive, including @ and ^
-me@mail.com me@mail.com me@mail.com me@mail.com 
-@this->var = a^b; @this->var = a^b; @this->var = a^b; @this->var = a^b; 
-@interface Person : NSObject @interface Person : NSObject 
-int a = x^n; int a = x^n; int a = x^n; int a = x^n; 
-@res = a/b^n - @_c < w; @res = a/b^n - @_c < w; @res = a/b^n - @_c < w; @res = a/b^n - @_c < w; 
-@x <-- @a^@b ? @n : @m; @x <-- @a^@b ? @n : @m; @x <-- @a^@b ? @n : @m; @x <-- @a^@b ? @n : @m; 
