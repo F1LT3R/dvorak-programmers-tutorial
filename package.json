@@ -1,6 +1,6 @@
 {
   "name": "dvorak-programmers-tutorial",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Dvorak Programmer CLI Tutorial",
   "bin": {
     "dvorak": "index.js"

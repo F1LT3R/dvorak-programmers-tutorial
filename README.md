@@ -1,4 +1,4 @@
-# Dvorak Programmers CLI Tutorial 2.0
+# Dvorak Programmers CLI Tutorial
 
 A command line typing tutor for the Dvorak and [Programmer's Dvorak
 Dvorak](http://www.kaufmann.no/roland/dvorak/)
