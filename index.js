@@ -190,18 +190,35 @@ const loadLesson = filename => {
   return lines;
 };
   
-const start = file => {
-  const lines = loadLesson(file);
-   beginLesson(lines);
+const start = (file, list, index) => {
+	let callback;
+	if (index === list.length - 1) {
+		callback = () => {
+			console.log('Well done!');
+			process.stdin.pause();
+		}
+	} else {
+		callback = () => {
+			const nextIndex = parseInt(index) + 1;
+			const nextFile = list[nextIndex];
+			start(nextFile, list, nextIndex);
+		}
+	}
+	const lines = loadLesson(file.path);
+	beginLesson(lines, callback);
 };
 
-function beginLesson (lines) {
-  var fail = clc.bgRed.white.bold.underline;
+function beginLesson (lines, callback) {
+  var fail = clc.bgRed.white;
   var pass = clc.green;
   var complete = clc.green.underline;
   var white = clc;
+	let dim = clc.magenta;
   var green = clc.green;
-  var titleStyle = clc.underline;
+  var titleStyle = clc.cyan.underline;
+  
+  // Extra line so test ends in correct place
+  lines.push('');
 
   // Log the lesson title
   const firstLine = `${lines[0]}`;
@@ -210,13 +227,13 @@ function beginLesson (lines) {
   // Remove the lesson title from the lesson lines
   lines.shift();
 
-  var cursorLine = 0;
-  var currentLine;
-  var cursorColumn = 0;
-  var lineErrors= 0;
-  var trace = '';
-  var totalErrors = 0;
-  var start = (+ new Date());
+  let cursorLine = 0;
+  let currentLine;
+  let cursorColumn = 0;
+  let lineErrors= 0;
+  let trace = '';
+  let totalErrors = 0;
+  let start = (+ new Date());
 
   // Load the first line
   nextLine();
@@ -226,34 +243,37 @@ function beginLesson (lines) {
     cursorColumn = 0;
     trace = '';
     currentLine = lines[cursorLine];
-    console.log(white('\n' + currentLine));
+    console.log(white('\n' + currentLine.replace(/\s/g, dim('⠐')) + dim('¬')));
+	
+	process.stdout.write(dim('_'));
 
     if (cursorLine === lines.length-1) {
+    //if (cursorLine === 1) {
       lessonComplete();
     }
     cursorLine +=1;     
   }
 
   function lessonComplete () {
-    var end = (+ new Date());
-    var time = end - start;
-    var wordCount = lines.join(' ').split(' ').length - 1;
-    var msPerWord = time / wordCount;
-    var wpm = (60 * 1000 / msPerWord).toFixed(2);
-    
+	var end = (+ new Date());
+	var time = end - start;
+	var wordCount = lines.join(' ').split(' ').length - 1;
+	var msPerWord = time / wordCount;
+	var wpm = (60 * 1000 / msPerWord).toFixed(2);
+
+    console.log();
     console.log(complete('Lesson complete!'));
     console.log(white('Total errors: ' + totalErrors));
     console.log(white('Words Per Minute: ' + wpm));
-    console.log();
-    
-    process.stdin.pause();
+	console.log();
+	process.stdin.removeListener('keypress', onKeyPress);
+	callback();
   }
 
-  // Begin reading keys
-  keypress(process.stdin);
-
-  process.stdin.on('keypress', function (ch, key) {
-    if (key && key.hasOwnProperty('name')) {
+	// Begin reading keys
+	keypress(process.stdin);
+	function onKeyPress (ch, key) {
+    	if (key && key.hasOwnProperty('name')) {
 
       // Quit on Ctrl+C        
       if (key && key.ctrl && key.name == 'c') {
@@ -264,19 +284,21 @@ function beginLesson (lines) {
 
       // Ignore keys
       // if (key.name === 'return' || key.name === 'tab') {
-      if ( key.name === 'tab') {
+      if (key.name === 'tab') {
         return;
       }
       
       if (key.name === 'backspace') {
         if (cursorColumn > 0) {
-          process.stdout.write(clc.move.left(1));
-          process.stdout.write(clc.erase.lineRight);
+          process.stdout.write(clc.move.left(2));
+		  process.stdout.write(clc.erase.lineRight);
+		  process.stdout.write(clc.erase.lineRight);
           cursorColumn -= 1;
           if (trace[cursorColumn] === '0') {
             lineErrors-=1;
           }
           trace = trace.substr(0, trace.length-1);
+			process.stdout.write(dim('_'));
         }
         
         return;
@@ -285,13 +307,19 @@ function beginLesson (lines) {
 
     if (ch === currentLine[cursorColumn]) {
       if (!returned) {
-        process.stdout.write(pass(ch));
+          process.stdout.write(clc.move.left(1));
+		  process.stdout.write(clc.erase.lineRight);
+        process.stdout.write(pass(ch).replace(/\s/, dim('⠐')));
+		process.stdout.write(dim('_'));
         trace += '1';
       }
     } else {
       if (!returned) {
         process.stdout.write('\u0007');
+          process.stdout.write(clc.move.left(1));
+		  process.stdout.write(clc.erase.lineRight);
         process.stdout.write(fail(ch));
+		process.stdout.write(dim('_'));
         lineErrors += 1;
         totalErrors += 1;
         trace += '0';
@@ -301,19 +329,21 @@ function beginLesson (lines) {
       cursorColumn += 1;
     }
 
-    // console.log(cursorColumn, currentLine.length, returned);
-    if (cursorColumn >= currentLine.length && !lineErrors && returned) {
-      nextLine();
-    }
-  });
+	if (cursorColumn >= currentLine.length && !lineErrors && returned) {
+          process.stdout.write(clc.move.left(1));
+		  process.stdout.write(clc.erase.lineRight);
+		process.stdout.write(dim('¬'));
+		nextLine();
+	}
+  };
+	process.stdin.on('keypress', onKeyPress);
+	if (typeof process.stdin.setRawMode == 'function') {
+		process.stdin.setRawMode(true);
+	} else {
+		tty.setRawMode(true);
+	}
 
-  if (typeof process.stdin.setRawMode == 'function') {
-    process.stdin.setRawMode(true);
-  } else {
-    tty.setRawMode(true);
-  }
-
-  process.stdin.resume();
+	process.stdin.resume();
 }
 
 const generateTOC = () => new Promise((resolve, reject) => {
@@ -363,10 +393,10 @@ const menu = {
   sub: async list => {
     const choices = [];
 
-    list.forEach(file => {
+    list.forEach((file, idx) => {
       choices.push({
           message: file.title,
-          name: file.path
+          name: String(idx)
       });
     });
 
@@ -375,10 +405,11 @@ const menu = {
       message: 'Choose your beginning',
       limit: 5,
       choices
-    });
+	});
 
-    const answer = await prompt.run();
-    return answer;
+    const idx = await prompt.run();
+	const file = list[idx];
+    return [file, idx];
   },
 
   help: () => program.outputHelp(),
@@ -395,11 +426,11 @@ const startWithMenu = () => generateTOC()
     if (Reflect.has(menu, type)) {
       return menu[type]();
     }
-    
+
     const list = type === 'lessons' ? TOC.lessons : TOC.katas[type];
-    
-    menu.sub(list).then(file => {
-      start(file);
+
+    menu.sub(list).then(([file, idx]) => {
+      start(file, list, idx);
     })
   });
 
