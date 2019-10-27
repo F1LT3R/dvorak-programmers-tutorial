@@ -1,0 +1,45 @@
+{
+  "name": "dvorak-programmers-tutorial",
+  "version": "2.0.5",
+  "description": "Dvorak Programmer CLI Tutorial",
+  "bin": {
+    "dvorak": "index.js"
+  },
+  "dependencies": {
+    "cfonts": "^2.4.5",
+    "cli-color": "^1.1.0",
+    "cli-cursor": "^3.1.0",
+    "commander": "^2.9.0",
+    "enquirer": "^2.3.2",
+    "inquirer": "^7.0.0",
+    "keypress": "^0.2.1",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/F1LT3R/dvorak-programmers-tutorial.git"
+  },
+  "keywords": [
+    "dvorak",
+    "typing",
+    "tutorial",
+    "programmers",
+    "dvorak",
+    "kata",
+    "proverbs",
+    "solomon",
+    "tao",
+    "te",
+    "ching"
+  ],
+  "author": "Alistair MacDonald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/F1LT3R/dvorak-programmers-tutorial/issues"
+  },
+  "homepage": "https://github.com/F1LT3R/dvorak-programmers-tutorial#readme"
+}
