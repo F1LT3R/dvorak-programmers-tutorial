@@ -273,6 +273,9 @@ function beginLesson (lines, callback) {
 	// Begin reading keys
 	keypress(process.stdin);
 	function onKeyPress (ch, key) {
+		const cols = process.stdout.columns;
+		const atEdge = cursorColumn > 0 && cursorColumn % cols >= cols -1;
+		//atEdge && console.log('edge');
     	if (key && key.hasOwnProperty('name')) {
 
       // Quit on Ctrl+C        
@@ -287,19 +290,35 @@ function beginLesson (lines, callback) {
       if (key.name === 'tab') {
         return;
       }
-      
+		const modCol = cursorColumn % cols;
+		const byEdge = cursorColumn > 0 && modCol > cols -2;
+		const edge = cursorColumn > 0 && modCol === 0;
+		const preEdge = cursorColumn > 0 && modCol < cols;
+		//edge && console.log('edge');
+		//adEdge && console.log('atEdge');
+		//byEdge && console.log('byEdge');
       if (key.name === 'backspace') {
         if (cursorColumn > 0) {
-          process.stdout.write(clc.move.left(2));
-		  process.stdout.write(clc.erase.lineRight);
-		  process.stdout.write(clc.erase.lineRight);
+			if (byEdge) {
+			  process.stdout.write(clc.move.left(1));
+			  process.stdout.write(clc.erase.lineRight);
+			  process.stdout.write(dim('_'));
+			} else if (atEdge) {
+			  process.stdout.write(clc.move.left(1));
+			} else if (preEdge) {
+			  process.stdout.write(clc.move.left(2));
+			  process.stdout.write(clc.erase.lineRight);
+			  process.stdout.write(clc.erase.lineRight);
+			  process.stdout.write(dim('_'));
+			}
+		  }
+
           cursorColumn -= 1;
 		    if (trace[cursorColumn] === '0') {
             lineErrors-=1;
           }
           trace = trace.substr(0, trace.length-1);
-			process.stdout.write(dim('_'));
-        }
+       
         
         return;
       }
@@ -311,8 +330,6 @@ function beginLesson (lines, callback) {
 		  		cursorColumn > 0) {
 			  process.stdout.write('\n');
 		  }
-		  const atEdge = cursorColumn % process.stdout.columns >=
-		  	process.stdout.columns -1;
 			!atEdge && process.stdout.write(clc.move.left(1));
 		  process.stdout.write(clc.erase.lineRight);
         process.stdout.write(pass(ch).replace(/\s/, dim('⠐')));
@@ -322,8 +339,8 @@ function beginLesson (lines, callback) {
     } else {
       if (!returned) {
         process.stdout.write('\u0007');
-          process.stdout.write(clc.move.left(1));
-		  process.stdout.write(clc.erase.lineRight);
+        process.stdout.write(clc.move.left(1));
+		process.stdout.write(clc.erase.lineRight);
         process.stdout.write(fail(ch));
 		process.stdout.write(dim('_'));
         lineErrors += 1;
