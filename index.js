@@ -294,7 +294,7 @@ function beginLesson (lines, callback) {
 		  process.stdout.write(clc.erase.lineRight);
 		  process.stdout.write(clc.erase.lineRight);
           cursorColumn -= 1;
-          if (trace[cursorColumn] === '0') {
+		    if (trace[cursorColumn] === '0') {
             lineErrors-=1;
           }
           trace = trace.substr(0, trace.length-1);
@@ -307,10 +307,16 @@ function beginLesson (lines, callback) {
 
     if (ch === currentLine[cursorColumn]) {
       if (!returned) {
-          process.stdout.write(clc.move.left(1));
+		  if (cursorColumn % process.stdout.columns === 0 &&
+		  		cursorColumn > 0) {
+			  process.stdout.write('\n');
+		  }
+		  const atEdge = cursorColumn % process.stdout.columns >=
+		  	process.stdout.columns -1;
+			!atEdge && process.stdout.write(clc.move.left(1));
 		  process.stdout.write(clc.erase.lineRight);
         process.stdout.write(pass(ch).replace(/\s/, dim('⠐')));
-		process.stdout.write(dim('_'));
+		!atEdge && process.stdout.write(dim('_'));
         trace += '1';
       }
     } else {
